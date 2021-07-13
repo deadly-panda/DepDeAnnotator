@@ -1,0 +1,78 @@
+title: Feotal planes DeepEcho
+type: community
+group: Computer Vision
+image: /static/templates/feotal-plan.png
+details: <h1>Classify the plane</h1>
+config: '
+<View style="text-align: center; font-weight:bold;">
+  <View style="display:flex;justify-content:center;align-items:center;">
+    <Image name="image" value="$image"/>
+  </View>
+  <View>
+    <Header value="Is the AF-pocket visible?" style="color:green"/>
+    <View style="font-weight:bold; display:flex;justify-content:center;align-items:center;">
+      <Choices name="citerne" toName="image" choice="single" showInLine="inline">
+        <Choice value="Yes"/>
+        <Choice value="No"/>
+      </Choices>
+    </View>
+    <View style="text-align: center;">
+      <Header value="Planes Classification" style="color:green"/>
+      <Choices name="plans" toName="image" showInLine="select">
+        <Choice value="Transthalamic plane" background="blue"/>
+        <Choice value="Transventricular plane" background="green"/>
+        <Choice value="Transcerebellar plane" background="green"/>
+        <Choice value="Abdominal plane" background="green"/>
+        <Choice value="Femoral plane" background="green"/>
+      </Choices>
+    </View>
+  </View>
+<View style="display:flex;justify-content:center;align-items:center;">
+  <View>
+    <Choices name="qualTransthalamic" toName="image" choice="multiple" showInLine="inline" visibleWhen="choice-selected" whenTagName="plans" whenChoiceValue="Transthalamic plane">
+      <Choice value="Symetrical plane"/>
+      <Choice value="Plane showing thalami"/>
+      <Choice value="Plane showing cavum septi pellucidi"/>
+      <Choice value="Cerebellum not visible"/>
+      <Choice value="Head occupying more than half of total image"/>
+      <Choice value="Calipers and dotted ellipse placed correctly"/>
+    </Choices>
+  </View>
+  <View>
+    <Choices name="qualTransventricular" toName="image" choice="multiple" showInLine="inline" visibleWhen="choice-selected" whenTagName="plans" whenChoiceValue="Transventricular plane">
+      <Choice value="Anterior and posterior portions of lateral ventricles visible"/>
+      <Choice value="Cavum septi pellucidi separating anterior horns"/>
+      <Choice value="Atrium and posterior horn of ventricle distal to transducer visible"/>
+      <Choice value="Choroid plexus visible"/>
+    </Choices>
+  </View>
+  <View>
+    <Choices name="qualTranscerebellar" toName="image" choice="multiple" showInLine="inline" visibleWhen="choice-selected" whenTagName="plans" whenChoiceValue="Transcerebellar plane">
+      <Choice value="Cerebellar hemispheres visible"/>
+      <Choice value="Vermis visible"/>
+      <Choice value="Thalami visible"/>
+      <Choice value="Cerebrospinal fluid in the cisterna magna visible"/>
+    </Choices>
+  </View>
+  <View>
+    <Choices name="qualAbdominal" toName="image" choice="multiple" showInLine="inline" visibleWhen="choice-selected" whenTagName="plans" whenChoiceValue="Abdominal plane">
+      <Choice value="Symmetrical plane"/>
+      <Choice value="Plane showing stomach bubble"/>
+      <Choice value="Plane showing portal sinus"/>
+      <Choice value="Kidneys not visible"/>
+      <Choice value="Abdomen occupying more than half of total image"/>
+      <Choice value="Calipers placed correctly"/>
+    </Choices>
+  </View>
+  <View>
+    <Choices name="qualFemoral" toName="image" choice="multiple" showInLine="inline" visibleWhen="choice-selected" whenTagName="plans" whenChoiceValue="Femoral plane">
+      <Choice value="Both ends of bone clearly visible"/>
+      <Choice value="&lt; 45° angle to horizontal"/>
+      <Choice value="Femur occupying more than half of total image"/>
+      <Choice value="Calipers and dotted ellipse placed correctly"/>
+    </Choices>
+  </View>
+</View>
+</View>
+
+'
